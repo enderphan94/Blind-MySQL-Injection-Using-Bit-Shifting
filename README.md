@@ -1,5 +1,5 @@
 # Blind-MySQL-Injection-Using-Bit-Shifting
-
+URL: https://www.exploit-db.com/papers/17073
 
 http://h.ackack.net/faster-blind-mysql-injection-using-bit-shifting.html for a HTML version
    Made by Jelmer de Hen       H.ackAck.net
